@@ -1,17 +1,11 @@
 version: "2"
 services:
 
-  #This is for test
-  base_pwn:
-   build:
-     context: .
-     dockerfile: Dockerfile
-   image: ctftraining/base_pwn_xinetd_kafel_1804
 
   pwn:
     build:
       context: .
-      dockerfile: example.Dockerfile  # Your Dockerfile
+      dockerfile: Dockerfile  # Your Dockerfile
     #image: ctftraining/pwn_kafel_test  # This is for test, you can change this name
     volumes:
       - ./tcpdump:/var/lib/tcpdump # Tcp dump dir
@@ -20,5 +14,3 @@ services:
     environment:
       - FLAG=ctftraining{base_pwn_xinetd_kafel_1804} # flag init 
       - TCPDUMP_ENABLE=1 
-    depends_on:
-     - base_pwn
